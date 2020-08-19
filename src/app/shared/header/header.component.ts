@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import { Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('search') input: ElementRef;
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

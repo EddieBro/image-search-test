@@ -1,1 +1,15 @@
-<p>main-page works!</p>
+<div class="container">
+  <h1 class="pt-5 mb-3">Image search</h1>
+  <div class="search-block mb-5">
+    <input formControlName="query" #imgSearch class="form-control" type="search" placeholder="Search (3 letters min)" aria-label="Search">
+  </div>
+  <div class="row row-cols-3">
+    <div class="col mb-4 flex-grow-1" *ngFor="let image of searchResult$;  trackBy: trackByFunc">
+      <app-image-card [image]="image">
+        <button class="btn btn-primary" (click)="saveToList(image)">Save</button>
+      </app-image-card>
+    </div>
+  </div>
+
+
+</div>

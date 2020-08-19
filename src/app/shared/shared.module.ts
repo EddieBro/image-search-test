@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import {AppRoutingModule} from '../app-routing.module';
+import { ImageCardComponent } from './image-card/image-card.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, ImageCardComponent],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    ImageCardComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ]
 })
 export class SharedModule { }
