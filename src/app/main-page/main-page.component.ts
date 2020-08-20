@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {fromEvent, Observable, Subscription} from 'rxjs';
-import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {fromEvent} from 'rxjs';
+import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators';
 import { ImageSearchService, ImageObj } from '../shared/services/image-search/image-search.service';
 import {MatDialog} from '@angular/material/dialog';
-import {ListModalComponent} from '../core/modals/list-modal/list-modal.component';
+import { ListModalComponent } from '../core/modals/list-modal/list-modal.component';
 
 
 @Component({
@@ -28,18 +28,15 @@ export class MainPageComponent implements AfterViewInit {
         }),
         filter(res => res.length > 3),
         debounceTime(250),
-        distinctUntilChanged()
-      ).subscribe((text: string) => {
-        this.imgService.getImages(text).subscribe(response => {
-          this.searchResult$ = response.hits;
-        });
+        distinctUntilChanged(),
+        switchMap(text => this.imgService.getImages(text))
+      ).subscribe(response => {
+      this.searchResult$ = response.hits;
     });
   }
+
   public trackByFunc(idx, item: { id: number }) {
     return item.id;
-  }
-  public save(image){
-    this.imgService.addToFav(image);
   }
 
   public saveToList(image) {

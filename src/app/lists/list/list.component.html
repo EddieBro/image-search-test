@@ -1,0 +1,15 @@
+<div *ngFor="let list of lists$ | async">
+  <div class="list-body mb-3">
+    <h5 class="list-title">List name: {{list.title}}</h5>
+    <p class="list-text">List description: {{list.description}}</p>
+    <div class="info-block align-items-center justify-content-center flex-column" (click)="addToListImage(list.id, image)">
+      <h3>Click to add image to this list</h3>
+    </div>
+  </div>
+  <h2>This is list image collecction</h2>
+  <div class="row row-cols-3">
+    <div class="col mb-4 flex-grow-1" *ngFor="let image of list.images;  trackBy: trackByFunc">
+      <app-image-card [image]="image"></app-image-card>
+    </div>
+  </div>
+</div>

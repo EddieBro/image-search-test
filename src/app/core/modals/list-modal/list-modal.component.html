@@ -1,8 +1,18 @@
 <h2 mat-dialog-title>Adding Image to Favorite list</h2>
 <mat-dialog-content>
-  First of all, choose the list
+  <div *ngIf="(lists$ | async).length; then listWith else emptyList"></div>
+  <ng-template #listWith>
+    <app-list [image]="data"></app-list>
+    <a [routerLink]="'/favorites'" mat-dialog-close>If you wanna create other lists</a>
+  </ng-template>
+  <ng-template #emptyList>
+    <p>You lists empty, do you want create list ?</p>
+    <button class="btn btn-success" (click)="createToggle =  true" *ngIf="createToggle === false">Create</button>
+    <ng-container *ngIf="createToggle">
+      <app-list-add></app-list-add>
+    </ng-container>
+  </ng-template>
+<!--  <div *ngFor="let list of lists$ | async">-->
+<!--    <div>{{list | json}}</div>-->
+<!--  </div>-->
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="true">Save</button>
-</mat-dialog-actions>

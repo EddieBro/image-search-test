@@ -1,0 +1,25 @@
+.img-block {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  &:hover {
+    .info-block {
+      display: flex;
+    }
+  }
+}
+
+.info-block {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  background-color: rgba( black, .5);
+}

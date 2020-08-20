@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ListModalComponent } from './list-modal/list-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {ListsModule} from '../../lists/lists.module';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -10,7 +12,9 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ListsModule,
+    RouterModule
   ],
   exports: [
     ListModalComponent

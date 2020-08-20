@@ -37,15 +37,10 @@ let params = new HttpParams()
   providedIn: 'root'
 })
 export class ImageSearchService {
-  public favList = [];
   constructor(private http: HttpClient) {
   }
   public getImages(term): Observable<any> {
     params = params.append('q', term);
     return this.http.get(environment.imageSearch.apiUrl, {params});
-  }
-
-  public addToFav(image) {
-    this.favList.push(image);
   }
 }

@@ -1,0 +1,6 @@
+<div class="img-block" [ngStyle]="{'background-image': 'url('+ image.webformatURL +')'}">
+  <div class="info-block align-items-center justify-content-center flex-column">
+    <p class="card-title">Author name: {{image.user}}</p>
+    <ng-content></ng-content>
+  </div>
+</div>
