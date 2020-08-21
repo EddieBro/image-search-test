@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "image-search-app"
+  "defaultProject": "image-search-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

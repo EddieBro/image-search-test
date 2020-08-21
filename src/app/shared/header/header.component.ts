@@ -1,6 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import { Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +7,7 @@ import { Observable} from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('search') input: ElementRef;
+  public toggleMenu = false;
   constructor() {
   }
 

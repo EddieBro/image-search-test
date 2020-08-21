@@ -8,19 +8,23 @@ import {ListsService} from '../../../lists/lists.service';
   styleUrls: ['./list-modal.component.scss']
 })
 export class ListModalComponent implements OnInit {
-  public createToggle: boolean;
+  public createToggle = false;
   public lists$ = this.listsService.getLists().asObservable();
   constructor(
     private dialogRef: MatDialogRef<ListModalComponent>,
     private listsService: ListsService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.createToggle = false;
   }
 
   ngOnInit(): void {
   }
 
   close() {
+    this.dialogRef.close();
+  }
+
+  addToListImage(id, image) {
+    this.listsService.addToListImage(id, image);
     this.dialogRef.close();
   }
 }

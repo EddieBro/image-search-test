@@ -2,7 +2,15 @@
 <mat-dialog-content>
   <div *ngIf="(lists$ | async).length; then listWith else emptyList"></div>
   <ng-template #listWith>
-    <app-list [image]="data"></app-list>
+    <div *ngFor="let list of lists$ | async">
+      <div class="list-body mb-3">
+        <h5 class="list-title">List name: {{list.title}}</h5>
+        <p class="list-text">List description: {{list.description}}</p>
+        <div class="info-block align-items-center justify-content-center flex-column" (click)="addToListImage(list.id, data)">
+          <h3>Click to add image to this list</h3>
+        </div>
+      </div>
+    </div>
     <a [routerLink]="'/favorites'" mat-dialog-close>If you wanna create other lists</a>
   </ng-template>
   <ng-template #emptyList>
@@ -12,7 +20,4 @@
       <app-list-add></app-list-add>
     </ng-container>
   </ng-template>
-<!--  <div *ngFor="let list of lists$ | async">-->
-<!--    <div>{{list | json}}</div>-->
-<!--  </div>-->
 </mat-dialog-content>

@@ -3,7 +3,7 @@
   <div class="search-block mb-5">
     <input formControlName="query" #imgSearch class="form-control" type="search" placeholder="Search (3 letters min)" aria-label="Search">
   </div>
-  <div class="row row-cols-3">
+  <div class="row row-cols-md-3 row-cols-1">
     <div class="col mb-4 flex-grow-1" *ngFor="let image of searchResult$;  trackBy: trackByFunc">
       <app-image-card [image]="image">
         <button class="btn btn-primary" (click)="saveToList(image)">Save</button>

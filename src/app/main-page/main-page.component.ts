@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators';
-import { ImageSearchService, ImageObj } from '../shared/services/image-search/image-search.service';
+import {ImageSearchService} from '../core/services/image-search/image-search.service';
 import {MatDialog} from '@angular/material/dialog';
-import { ListModalComponent } from '../core/modals/list-modal/list-modal.component';
+import {ListModalComponent} from '../core/modals/list-modal/list-modal.component';
+import {Image} from '../core/models/image.interafe';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ListModalComponent } from '../core/modals/list-modal/list-modal.compone
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements AfterViewInit {
-  public searchResult$: ImageObj[];
+  public searchResult$: Image[];
 
   @ViewChild('imgSearch') input: ElementRef<HTMLElement>;
 

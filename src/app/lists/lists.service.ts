@@ -23,10 +23,11 @@ export class ListsService {
     this.listArray.next([...this.listArray.value]);
   }
 
-  editList(id: string, title: string, description: string){
-    const current = this.listArray.value.find(value => value.id === id);
-    current.title = title;
-    current.description = description;
+  editList(list: List){
+    const current = this.listArray.value.find(value => value.id === list.id);
+    current.title = list.title;
+    current.description = list.description;
+    current.images = list.images;
     this.listArray.next([...this.listArray.value]);
   }
 

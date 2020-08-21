@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ListsService} from '../lists.service';
 import {Image} from '../../core/models/image.interafe';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-list',
@@ -10,6 +11,7 @@ import {Image} from '../../core/models/image.interafe';
 export class ListComponent implements OnInit {
   @Input() image: Image;
   @Output() modalClose = new EventEmitter();
+  public editToggle = false;
   public lists$ = this.listsService.getLists().asObservable();
   constructor(
     private listsService: ListsService,
@@ -22,8 +24,7 @@ export class ListComponent implements OnInit {
     return item.id;
   }
 
-  addToListImage(id, image) {
-    this.listsService.addToListImage(id, image);
-    console.log('addImage', image);
+  public saveFile(image){
+    saveAs(image.largeImageURL, image.tags);
   }
 }

@@ -1,0 +1,15 @@
+@import 'src/styles';
+
+.list-body {
+  position: relative;
+  padding: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  &:hover {
+    .info-block {
+      display: flex;
+    }
+  }
+}
+
+@include info-block();

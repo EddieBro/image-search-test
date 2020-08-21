@@ -1,3 +1,5 @@
+@import 'src/styles';
+
 .list-body {
   position: relative;
   padding: 15px;
@@ -9,17 +11,11 @@
     }
   }
 }
-.info-block {
+
+.edit {
   position: absolute;
-  display: none;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: #fff;
-  background-color: rgba(#000, .5);
-  cursor: pointer;
-  h3 {
-    margin-bottom: 0;
-  }
+  top: 15px;
+  right: 15px;
 }
+
+@include info-block();

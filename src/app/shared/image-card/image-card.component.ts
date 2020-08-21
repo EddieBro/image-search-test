@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ImageObj, ImageSearchService} from '../services/image-search/image-search.service';
+import {Image} from '../../core/models/image.interafe';
 
 @Component({
   selector: 'app-image-card',
@@ -7,8 +7,8 @@ import {ImageObj, ImageSearchService} from '../services/image-search/image-searc
   styleUrls: ['./image-card.component.scss']
 })
 export class ImageCardComponent implements OnInit {
-  @Input() image: ImageObj;
-  constructor(private imgService: ImageSearchService) { }
+  @Input() image: Image;
+  constructor() { }
 
   ngOnInit(): void {
   }

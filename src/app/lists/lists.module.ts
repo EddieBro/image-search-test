@@ -10,11 +10,12 @@ import { ListAddComponent } from './list-add/list-add.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import {SharedModule} from '../shared/shared.module';
+import { ListEditComponent } from './list-edit/list-edit.component';
 
 
 
 @NgModule({
-  declarations: [ListAddComponent, ListComponent],
+  declarations: [ListAddComponent, ListComponent, ListEditComponent],
   exports: [
     ListAddComponent,
     ListComponent
@@ -25,7 +26,7 @@ import {SharedModule} from '../shared/shared.module';
     StoreModule.forFeature(fromList.listsFeatureKey, fromList.reducer),
     EffectsModule.forFeature([ListEffects]),
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class ListsModule { }
