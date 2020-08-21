@@ -1,5 +1,5 @@
 <div *ngFor="let list of lists$ | async">
-  <div class="list-body">
+  <div class="list-body mb-4">
     <button class="edit btn btn-secondary" (click)="editToggle = true" *ngIf="editToggle === false">Edit</button>
     <div *ngIf="editToggle; then editTrue else editFalse"></div>
     <ng-template #editTrue>
