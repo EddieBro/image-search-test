@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {ListsService} from '../lists.service';
 import {generateId} from '../../core/utils/idgen';
+import {Store} from '@ngrx/store';
+import {addList} from '../store/list.actions';
+
 
 @Component({
   selector: 'app-list-add',
@@ -11,7 +13,7 @@ import {generateId} from '../../core/utils/idgen';
 export class ListAddComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
-    private listsService: ListsService) {
+    private store: Store) {
   }
 
   addListForm = this.fb.group({
@@ -29,6 +31,6 @@ export class ListAddComponent implements OnInit {
       description: this.addListForm.controls.description.value,
       images: []
     };
-    this.listsService.addList(list);
+    this.store.dispatch(addList({ list }));
   }
 }

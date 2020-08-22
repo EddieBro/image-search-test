@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {ListsService} from '../lists.service';
 import {List} from '../../core/models/list.interface';
+import {select, Store} from '@ngrx/store';
+import {updateList} from '../store/list.actions';
+import {Update} from '@ngrx/entity';
 
 @Component({
   selector: 'app-list-edit',
@@ -13,7 +15,7 @@ export class ListEditComponent implements OnInit {
   @Output() editComplete: EventEmitter<boolean> = new EventEmitter();
   constructor(
     private fb: FormBuilder,
-    private listsService: ListsService
+    private store: Store
   ) { }
 
   editListForm = this.fb.group({
@@ -37,7 +39,11 @@ export class ListEditComponent implements OnInit {
       description: this.editListForm.controls.description.value,
       images: this.list.images
     };
+    const update: Update<List> = {
+      id: this.list.id,
+      changes: list
+    };
     this.editComplete.emit(true);
-    this.listsService.editList(list);
+    this.store.dispatch(updateList({list: update}));
   }
 }

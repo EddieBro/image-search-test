@@ -16,6 +16,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {ModalsModule} from './core/modals/modals.module';
 import {ListsModule} from './lists/lists.module';
+import {metaReducers, reducers} from './reducers';
+import {AppEffects} from './app.effects';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,15 @@ import {ListsModule} from './lists/lists.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ListsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

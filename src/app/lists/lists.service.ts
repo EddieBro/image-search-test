@@ -14,7 +14,7 @@ export class ListsService {
   }
 
   addList(list: List) {
-    this.listArray.next([...this.listArray.value, list]);
+    return this.listArray.next([...this.listArray.value, list]);
   }
 
   addToListImage(id: string, image: Image) {

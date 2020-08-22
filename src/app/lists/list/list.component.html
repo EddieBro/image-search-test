@@ -1,9 +1,9 @@
-<div *ngFor="let list of lists$ | async">
+<div *ngFor="let list of lists$ | async; let idx = index">
   <div class="list-body mb-4">
-    <button class="edit btn btn-secondary" (click)="editToggle = true" *ngIf="editToggle === false">Edit</button>
-    <div *ngIf="editToggle; then editTrue else editFalse"></div>
+    <button class="edit btn btn-secondary" (click)="toggle(idx)" *ngIf="editToggle">Edit</button>
+    <div *ngIf="show === idx; then editTrue else editFalse"></div>
     <ng-template #editTrue>
-      <app-list-edit [list]="list" (editComplete)="editToggle = false"></app-list-edit>
+      <app-list-edit [list]="list" (editComplete)="show = -1; editToggle = true;"></app-list-edit>
     </ng-template>
     <ng-template #editFalse>
       <div class="mb-2">
@@ -11,6 +11,7 @@
         <p class="list-text">List description: {{list.description}}</p>
       </div>
       <div class="row row-cols-md-2 row-cols-1">
+        {{list.images | json}}
         <div class="col mb-4 flex-grow-1" *ngFor="let image of list.images;  trackBy: trackByFunc">
           <app-image-card [image]="image">
             <button class="btn btn-primary" (click)="saveFile(image)">Save image</button>
