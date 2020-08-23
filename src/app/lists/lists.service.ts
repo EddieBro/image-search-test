@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {List} from '../core/models/list.interface';
+import {List} from '../core/interfaces/list.interface';
 import {BehaviorSubject} from 'rxjs';
-import {Image} from '../core/models/image.interafe';
+import {Image} from '../core/interfaces/image.interafe';
 
 @Injectable({
   providedIn: 'root'

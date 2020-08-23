@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {List} from '../../core/models/list.interface';
+import {List} from '../../core/interfaces/list.interface';
 import {select, Store} from '@ngrx/store';
 import {updateList} from '../store/list.actions';
 import {Update} from '@ngrx/entity';

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {generateId} from '../../core/utils/idgen';
+import {generateId} from '../../core/utils/generate-id';
 import {Store} from '@ngrx/store';
 import {addList} from '../store/list.actions';
 

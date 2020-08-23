@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Image} from '../../core/models/image.interafe';
+import {Image} from '../../core/interfaces/image.interafe';
 
 @Component({
   selector: 'app-image-card',

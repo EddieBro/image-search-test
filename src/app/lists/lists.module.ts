@@ -11,14 +11,16 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import {SharedModule} from '../shared/shared.module';
 import { ListEditComponent } from './list-edit/list-edit.component';
+import { ListsComponent } from './lists/lists.component';
 
 
 
 @NgModule({
-  declarations: [ListAddComponent, ListComponent, ListEditComponent],
+  declarations: [ListAddComponent, ListComponent, ListEditComponent, ListsComponent],
   exports: [
     ListAddComponent,
-    ListComponent
+    ListComponent,
+    ListsComponent
   ],
   imports: [
     CommonModule,

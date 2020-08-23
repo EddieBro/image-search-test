@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Image} from '../../core/models/image.interafe';
+import {Image} from '../../core/interfaces/image.interafe';
 import * as saveAs from 'file-saver';
 import {ListState} from '../store/list.reducer';
 import {select, Store} from '@ngrx/store';
 import {selectLists} from '../store/list.selectors';
-import {List} from '../../core/models/list.interface';
+import {List} from '../../core/interfaces/list.interface';
 
 @Component({
   selector: 'app-list',
@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   @Output() modalClose = new EventEmitter();
 
   public show: number;
-  public editToggle = true;
+  public editToggle = false;
   public lists$ = this.store.pipe(select(selectLists));
 
   constructor(
@@ -27,14 +27,14 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public toggle(idx) {
-    this.editToggle = false;
-    if (this.show === idx) {
-      this.show = -1;
-    } else {
-      this.show = idx;
-    }
-  }
+  // public toggle(idx) {
+  //   this.editToggle = false;
+  //   if (this.show === idx) {
+  //     this.show = -1;
+  //   } else {
+  //     this.show = idx;
+  //   }
+  // }
 
   public trackByFunc(idx, item: { id: number }) {
     return item.id;

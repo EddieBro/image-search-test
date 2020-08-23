@@ -4,7 +4,7 @@ import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/o
 import {ImageSearchService} from '../core/services/image-search/image-search.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ListModalComponent} from '../core/modals/list-modal/list-modal.component';
-import {Image} from '../core/models/image.interafe';
+import {Image} from '../core/interfaces/image.interafe';
 
 
 @Component({

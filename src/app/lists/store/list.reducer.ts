@@ -1,10 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { List } from '../../core/models/list.interface';
+import { List } from '../../core/interfaces/list.interface';
 import * as ListActions from './list.actions';
-import {log} from 'util';
 
 export const listsFeatureKey = 'lists';
+
+export interface State {
+  showSidenav: boolean;
+}
 
 export interface ListState extends EntityState<List> {
   // additional entities state properties
@@ -16,7 +19,8 @@ export const adapter: EntityAdapter<List> = createEntityAdapter<List>();
 
 export const initialState: EntityState<List> & { error: undefined } = adapter.getInitialState({
   // additional entity state properties
-  error: undefined
+  error: undefined,
+  images: []
 });
 
 
@@ -26,29 +30,18 @@ export const reducer = createReducer(
     (state, action) =>
       adapter.addOne(action.list, state)
   ),
-  on(ListActions.addListFailure,
-    (state, action) => {
-      return {
-        ...state,
-        error: action.error
-      };
-  }),
-  on(ListActions.loadListsSuccess, (state, action) =>
-    adapter.setAll(action.lists, state)
-  ),
-  on(ListActions.loadListsFailure, (state, action) => {
-    return {
-      ...state,
-      error: action.error
-    };
-  }),
   on(ListActions.updateList, (state, action) =>
     adapter.updateOne(action.list, state)
   ),
-  on(ListActions.updateListImage, (state, action) => ({
-    ...state,
-    images: [].push(action)
-  })),
+  on(ListActions.updateListImage, (state, {id, images}) =>
+    adapter.updateOne(
+      {
+        id,
+        changes: {
+          images,
+        },
+      }, state)
+  )
 );
 
 

@@ -1,10 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ListsService} from '../../../lists/lists.service';
 import {select, Store} from '@ngrx/store';
 import {updateListImage} from '../../../lists/store/list.actions';
-import {Update} from '@ngrx/entity';
-import {List} from '../../models/list.interface';
 import {selectLists} from '../../../lists/store/list.selectors';
 
 @Component({
@@ -14,11 +11,9 @@ import {selectLists} from '../../../lists/store/list.selectors';
 })
 export class ListModalComponent implements OnInit {
   public createToggle = false;
-  // public lists$ = this.listsService.getLists().asObservable();
   public lists$ = this.store.pipe(select(selectLists));
   constructor(
     private dialogRef: MatDialogRef<ListModalComponent>,
-    // private listsService: ListsService,
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -30,16 +25,9 @@ export class ListModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addToListImage(id, image) {
-    // this.listsService.addToListImage(id, image);
-    const list = {
-      images: [image]
-    };
-    const update: Update<List> = {
-      id,
-      changes: list
-    };
-    this.store.dispatch(updateListImage({list: update}));
+  addToListImage(list, image) {
+    const images = [...list.images, image];
+    this.store.dispatch(updateListImage({id: list.id, images}));
     this.dialogRef.close();
   }
 }
