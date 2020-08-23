@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {SharedModule} from './shared/shared.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FavoritesPageComponent } from './favorites-page/favorites-page.component';
@@ -18,19 +17,23 @@ import {ModalsModule} from './core/modals/modals.module';
 import {ListsModule} from './lists/lists.module';
 import {metaReducers, reducers} from './reducers';
 import {AppEffects} from './app.effects';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ImageCardModule} from './image-card/image-card.module';
+import {HeaderComponent} from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    FavoritesPageComponent
+    FavoritesPageComponent,
+    HeaderComponent
   ],
   imports: [
     ModalsModule,
     MatDialogModule,
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
+    ImageCardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ListsModule,
@@ -43,7 +46,8 @@ import {AppEffects} from './app.effects';
     }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
